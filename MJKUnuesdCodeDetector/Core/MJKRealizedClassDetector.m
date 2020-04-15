@@ -33,7 +33,7 @@ static NSTimeInterval g_lastReportTime = 0;
     g_isRunning = YES;
     g_lastReportTime = CACurrentMediaTime();
     
-    __block UIBackgroundTaskIdentifier bgTask = [[UIApplication sharedApplication] beginBackgroundTaskWithName:@"CIPRealizedClassDetector" expirationHandler:^{
+    __block UIBackgroundTaskIdentifier bgTask = [[UIApplication sharedApplication] beginBackgroundTaskWithName:@"MJKRealizedClassDetector" expirationHandler:^{
         [[UIApplication sharedApplication] endBackgroundTask:bgTask];
         bgTask = UIBackgroundTaskInvalid;
     }];
@@ -81,7 +81,7 @@ static NSTimeInterval g_lastReportTime = 0;
         NSString *name = [NSString stringWithUTF8String:class_getName(cls)];
         
         // 如果 MJKRealizedClassDetectorDummy 这个代码里不使用的类被 realize 了，说明做了类似 objc_copyClassList 会 realize 所有类的事
-        if (!dirty && [name isEqualToString:@"CIPRealizedClassDetectorDummy"]) {
+        if (!dirty && [name isEqualToString:@"MJKRealizedClassDetectorDummy"]) {
             dirty = YES;
         }
         
